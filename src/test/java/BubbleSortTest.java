@@ -14,7 +14,7 @@ public class BubbleSortTest {
     @Test
     @DisplayName("Typical sort test")
     void testSort(){
-        Assertions.assertEquals(4, (bubbleSort.sortArray(new int[]{4, 82, 9, 99, 11, 90, 67})[0]));
+        Assertions.assertEquals(11, (bubbleSort.sortArray(new int[]{4, 82, 9, 99, 11, 90, 67})[1]));
         Assertions.assertNull(bubbleSort.sortArray(new int[]{}));
     }
 }
