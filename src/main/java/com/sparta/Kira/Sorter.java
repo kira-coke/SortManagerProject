@@ -6,3 +6,6 @@ public interface Sorter {
     int[] mergeArray(int[] array1, int[] array2);
 }
 
+//Bubble, Binary, Insertion, Merge. quick.
+//reverse a number
+
