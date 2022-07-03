@@ -54,7 +54,7 @@ public class BubbleSort implements Sorter{
             i++;
         }
         while(j<array2.length){
-            //if array 2 has reminaing values
+            //if array 2 has remaining values
             merged[k] = array2[j];
             k++;
             j++;

@@ -1,4 +1,5 @@
 package com.sparta.Kira;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -6,10 +7,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Sorter sorter = new BubbleSort();
         Scanner sc = new Scanner(System.in);
         System.out.println("Input which algorithm you would like to use:");// TODO add which options there are for clarity
-        System.out.println("Bubble sort, ");// TODO add rest of options
+        System.out.println("Bubble sort, Insertion sort, ");// TODO add rest of options
         String temp = sc.nextLine();
         String algorithm = temp.toLowerCase();//users decision
         System.out.println("Input how long you would like the first array to be");
@@ -18,15 +18,28 @@ public class Main {
         System.out.println("\nFor the second array, how long would you like it to be?");
         int array2Length = sc.nextInt();
         int[] randomArray2 = createArray(array2Length);
+        System.out.println("Unsorted array one: " + Arrays.toString(randomArray));
+        System.out.println("Unsorted array two: " + Arrays.toString(randomArray2));
         switch(algorithm){
             case("bubble sort"):
-                int[] sortedArray = sorter.sortArray(randomArray);
+                Sorter bubbleSort= new BubbleSort();
+                int[] sortedArray = bubbleSort.sortArray(randomArray);
                 System.out.println("\nBubble sort will be used");//output which algorithm
                 System.out.println("Sorted array one: "+ Arrays.toString(sortedArray));//output sorted array
-                int[] sortedArray2 = sorter.sortArray(randomArray2);
+                int[] sortedArray2 = bubbleSort.sortArray(randomArray2);
                 System.out.println("Sorted array two: " + Arrays.toString(sortedArray2));
-                int[] mergedArray = sorter.mergeArray(randomArray, randomArray2);
+                int[] mergedArray = bubbleSort.mergeArray(randomArray, randomArray2);
                 System.out.println("Merged sorted array of both: " + Arrays.toString(mergedArray));
+                break;
+            case("insertion sort"):
+                Sorter insertionSort = new InsertionSort();
+                int[] sortedArray3 = insertionSort.sortArray(randomArray);
+                System.out.println("\nInsertion sort will be used\n");
+                System.out.println("Sorted array one: "+ Arrays.toString(sortedArray3));
+                int [] sortedArray4 = insertionSort.sortArray(randomArray2);
+                System.out.println("Sorted array two: " + Arrays.toString(sortedArray4));
+                int[] mergedArray2 = insertionSort.mergeArray(sortedArray3, sortedArray4);
+                System.out.println("Merged sorted array of both: " + Arrays.toString(mergedArray2));
                 break;
         }
 
@@ -36,11 +49,10 @@ public class Main {
     public static int[] createArray(int x){
         Random rd = new Random();
         int[] tempArray = new int[x];
-        System.out.print("Original array: ");
         for(int i = 0; i<x; i++){
             //populate array
             tempArray[i] = rd.nextInt(100);
-            System.out.print(tempArray[i] + ", ");//output random array
+          //  System.out.print(tempArray[i] + ", ");//output random array
         }
         return tempArray;
     }
