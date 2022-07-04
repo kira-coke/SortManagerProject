@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Input which algorithm you would like to use:");// TODO add which options there are for clarity
         System.out.println("Bubble sort, Insertion sort, ");// TODO add rest of options
