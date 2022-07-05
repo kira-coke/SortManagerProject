@@ -1,6 +1,4 @@
 package com.sparta.Kira;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -41,6 +39,16 @@ public class Main {
                 System.out.println("Sorted array two: " + Arrays.toString(sortedArray4));
                 int[] mergedArray2 = insertionSort.mergeArray(sortedArray3, sortedArray4);
                 System.out.println("Merged sorted array of both: " + Arrays.toString(mergedArray2));
+                break;
+            case("merge sort"):
+               Sorter mergeSort = new MergeSort();
+                int[] sortedArray5 = mergeSort.sortArray(randomArray);
+                System.out.println("\nMerge sort will be used\n");
+                System.out.println("Sorted array one: " +Arrays.toString(sortedArray5));
+                int[] sortedArray6 = mergeSort.sortArray(randomArray2);
+                System.out.println("Sorted array two: " + Arrays.toString(sortedArray6));
+                int[] mergedArray3 = mergeSort.mergeArray(sortedArray5, sortedArray6); //TODO finish mergeing of 2 arrays
+                System.out.println("Merged sorted array of both: " + Arrays.toString(mergedArray3));
                 break;
         }
 
