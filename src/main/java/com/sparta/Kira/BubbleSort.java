@@ -1,5 +1,11 @@
 package com.sparta.Kira;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class BubbleSort implements Sorter{
+
+    public static Logger logger = LogManager.getLogger(Sorter.class);
     @Override
     public int[] sortArray(int[] arrayToSort) {
         if(arrayToSort.length == 0){

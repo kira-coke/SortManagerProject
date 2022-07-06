@@ -41,7 +41,11 @@ import java.util.Arrays;
 
         @Override
         public int[] mergeArray(int[] array1, int[] array2) {
-            return new int[0];
+            int[] newTemp = new int[array1.length + array2.length];
+            System.arraycopy(array1, 0, newTemp, 0, array1.length);
+            System.arraycopy(array2, 0, newTemp, array1.length, array2.length);
+            int[] sorted = sortArray(newTemp);
+            return sorted;
         }
     }
 

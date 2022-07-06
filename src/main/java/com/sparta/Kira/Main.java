@@ -8,7 +8,7 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Input which algorithm you would like to use:");// TODO add which options there are for clarity
-        System.out.println("Bubble sort, Insertion sort, ");// TODO add rest of options
+        System.out.println("Bubble sort, Insertion sort, Merge sort ");// TODO add rest of options
         String temp = sc.nextLine();
         String algorithm = temp.toLowerCase();//users decision
         System.out.println("Input how long you would like the first array to be");
@@ -47,7 +47,7 @@ public class Main {
                 System.out.println("Sorted array one: " +Arrays.toString(sortedArray5));
                 int[] sortedArray6 = mergeSort.sortArray(randomArray2);
                 System.out.println("Sorted array two: " + Arrays.toString(sortedArray6));
-                int[] mergedArray3 = mergeSort.mergeArray(sortedArray5, sortedArray6); //TODO finish mergeing of 2 arrays
+                int[] mergedArray3 = mergeSort.mergeArray(sortedArray5, sortedArray6);
                 System.out.println("Merged sorted array of both: " + Arrays.toString(mergedArray3));
                 break;
         }
@@ -66,4 +66,10 @@ public class Main {
         return tempArray;
     }
 }
+
+/*
+- The code should include a basic factory pattern to determine which sorter to use.
+- Make sure packages are created properly and the structure follows the MVC pattern.
+ - ```start``` - Factory pattern for sorters, loader for run logic and Java ```main``` method.*/
+
 
