@@ -41,7 +41,7 @@ public class Main {
                 System.out.println("Merged sorted array of both: " + Arrays.toString(mergedArray2));
                 break;
             case("merge sort"):
-               Sorter mergeSort = new MergeSort();
+                Sorter mergeSort = new MergeSort();
                 int[] sortedArray5 = mergeSort.sortArray(randomArray);
                 System.out.println("\nMerge sort will be used\n");
                 System.out.println("Sorted array one: " +Arrays.toString(sortedArray5));
@@ -50,8 +50,10 @@ public class Main {
                 int[] mergedArray3 = mergeSort.mergeArray(sortedArray5, sortedArray6);
                 System.out.println("Merged sorted array of both: " + Arrays.toString(mergedArray3));
                 break;
+            case("tree sort"):
+                Sorter treeSort = new TreeSort();
+                int[] sortedArray7 = treeSort.sortArray(randomArray);
         }
-
         //TODO output time taken
     }
 
