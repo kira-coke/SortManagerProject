@@ -1,12 +1,28 @@
 package com.sparta.Kira;
 //view class
 
+import java.util.Scanner;
+
 //```display``` - Classes that deal with printing to the console window.
 //handles data presentation, dynamitcally rendered
 public class DisplayManager {
-        
-    public void promot(){
-        System.out.println("Input which algorithm you would like to use:");// TODO add which options there are for clarity
-        System.out.println("Bubble sort, Insertion sort, Merge sort ");// TODO add rest of options
+
+    Scanner sc = new Scanner(System.in);
+
+    public void prompt(String message){
+        System.out.println(message);//
     }
+    public void error(Exception e){
+        System.out.println(e);
+    }
+
+    public String getInputString(){
+        String temp = sc.nextLine();
+        return temp.toLowerCase();//users decision
+    }
+
+    public int getInputInt(){
+        return sc.nextInt();
+    }
+
 }

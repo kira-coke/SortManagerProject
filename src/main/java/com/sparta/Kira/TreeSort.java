@@ -7,6 +7,7 @@ public class TreeSort implements Sorter {
         for(int num: arrayToSort){
             tree.insert(tree.node, num);
         }
+        
         return new int[0];
     }
 
@@ -44,7 +45,6 @@ public class TreeSort implements Sorter {
     }
 }
 /* Integrate a new class to implement a [tree sort](https://en.wikipedia.org/wiki/Tree_sort), using a [binary search tree](https://en.wikipedia.org/wiki/Binary_search_tree), so that the tree sort can be called in the same way as the other sort algorithms.
-- The new class should implement the current ```Sorter interface```.
 - Add code that calls the BST and passes in the array that will be used to construct the tree and then return a sorted array.
 - Use the Facade design pattern for this step.
 - Implement a nested class to represent a node in the tree.*/
