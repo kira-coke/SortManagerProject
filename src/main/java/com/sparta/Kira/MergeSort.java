@@ -44,8 +44,7 @@ import java.util.Arrays;
             int[] newTemp = new int[array1.length + array2.length];
             System.arraycopy(array1, 0, newTemp, 0, array1.length);
             System.arraycopy(array2, 0, newTemp, array1.length, array2.length);
-            int[] sorted = sortArray(newTemp);
-            return sorted;
+            return sortArray(newTemp);
         }
     }
 

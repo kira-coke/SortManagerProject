@@ -12,7 +12,7 @@ public class BubbleSort implements Sorter{
     public int[] sortArray(int[] arrayToSort) {
         if(arrayToSort.length == 0){
             System.out.println("Input a valid array of min length 1");
-            return null;
+            return null; // TODO remove this part as should exception in main code
         }
         int x = arrayToSort.length;
         for(int j = 0; j<x-1;j++){
@@ -34,8 +34,7 @@ public class BubbleSort implements Sorter{
         int[] merged = new int[array1.length + array2.length];
         System.arraycopy(array1, 0, merged, 0, array1.length);
         System.arraycopy(array2, 0, merged, array1.length, array2.length);
-        int[] sorted = sortArray(merged);
-        return sorted;
+        return sortArray(merged);
     }
 }
 

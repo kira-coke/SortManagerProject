@@ -7,12 +7,12 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Input which algorithm you would like to use:");// TODO add which options there are for clarity
+        System.out.println("Input which algorithm you would like to use:");// TODO custom exceptions for invalid String
         System.out.println("Bubble sort, Insertion sort, Merge sort ");// TODO add rest of options
         String temp = sc.nextLine();
         String algorithm = temp.toLowerCase();//users decision
-        System.out.println("Input how long you would like the first array to be");
-        int arrayLength = sc.nextInt();
+        System.out.println("Input a number between 1 and 100 for your desired array length");
+        int arrayLength = sc.nextInt(); //TODO custom excpetion for invalid input (not int) & if array is biiger thgan 100
         int[] randomArray = createArray(arrayLength);//create random array of size given
         System.out.println("\nFor the second array, how long would you like it to be?");
         int array2Length = sc.nextInt();
@@ -70,8 +70,18 @@ public class Main {
 }
 
 /*
+Update your project to use MVC and start to incorporate some of the design principles discussed earlier in the course (OOP, SOLID, design patterns).
+- Create classes which implements MVC, including ```SortManager``` (controller) and ```DisplayManager``` (view) classes.
 - The code should include a basic factory pattern to determine which sorter to use.
 - Make sure packages are created properly and the structure follows the MVC pattern.
- - ```start``` - Factory pattern for sorters, loader for run logic and Java ```main``` method.*/
+ - The code should separate the business logic (```sorters```) from the ```display``` to show MVC in action.
+ - ```display``` - Classes that deal with printing to the console window.
+ - ```exceptions``` - Any custom exceptions which will be thrown.
+ - ```sorters``` - The sort algorithms with Sorter interface for the Factory pattern.
+ - (Within ```sorters```) ```binaryTree``` - Logic for the binary tree including contract interface (see Phase 4).
+ - ```start``` - Factory pattern for sorters, loader for run logic and Java ```main``` method.
+- Create an ```interface``` which both sort classes can implement and make sure your application uses this interface where possible.
 
+### Phase 3
+- Add logging code into the Sort Manager project.
 

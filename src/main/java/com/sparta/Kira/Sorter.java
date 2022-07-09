@@ -1,5 +1,8 @@
 package com.sparta.Kira;
 
+//model
+//handles data logic, interacts with database
+
 public interface Sorter {
     int[] sortArray(int[] arrayToSort);
 
