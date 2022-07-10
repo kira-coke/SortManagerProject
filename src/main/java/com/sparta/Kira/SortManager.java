@@ -19,10 +19,12 @@ public class SortManager {
 
     public void run() throws Exception {
         view.prompt("Input which algorithm you would like to use:");// TODO custom exceptions for invalid String
-        view.prompt("Bubble sort, Insertion sort, Merge sort or Tree sort.");// TODO add rest of options
+        view.prompt("Bubble sort, Insertion sort, Merge sort or Tree sort (B, I, M and T can be used)");// TODO add rest of options
         String algorithm = view.getInputString();
         if((algorithm.equals("bubble sort") == false) && (algorithm.equals("insertion sort") == false)
-            && (algorithm.equals("merge sort") == false) && (algorithm.equals("tree sort") == false)) {
+            && (algorithm.equals("merge sort") == false) && (algorithm.equals("tree sort") == false) &&
+                (algorithm.equals("b") == false) && (algorithm.equals("i") == false) && (algorithm.equals("m") == false)
+        && (algorithm.equals("t") == false)) {
             view.prompt("Please input one of the valid algorithms (Perhaps check your spelling)");
             logger.error("Invalid algorithm inputted");
             throw new Exception();
@@ -65,17 +67,25 @@ public class SortManager {
             case("tree sort"):
                 sorter = new TreeSort();
                 break;
+            case("b"):
+                sorter = new BubbleSort();
+                break;
+            case("i"):
+                sorter = new InsertionSort();
+                break;
+            case("m"):
+                sorter = new MergeSort();
+                break;
+            case("t"):
+                sorter = new TreeSort();
+                break;
         }
         view.prompt("\n"+ algorithm + "sort will be used");//output which algorithm
         long startTime = System.nanoTime();
-        try{
-            sortedArray = sorter.sortArray(randomArray);
-            sortedArray2 = sorter.sortArray(randomArray2);
-            mergedArray = sorter.mergeArray(randomArray, randomArray2);
-        }catch(NullPointerException e){
-            logger.error("No algorithm was inputed", e.getMessage());
-            throw new NullPointerException();
-        }
+        sortedArray = sorter.sortArray(randomArray);
+        sortedArray2 = sorter.sortArray(randomArray2);
+        mergedArray = sorter.mergeArray(randomArray, randomArray2);
+
         long endTime = System.nanoTime();
         view.prompt("Sorted array one: "+ Arrays.toString(sortedArray));//output sorted array
         long timeTaken = endTime-startTime;
@@ -90,7 +100,9 @@ public class SortManager {
                 view.prompt("Which algorithm would you like to use?");
                 String algo = view.getInputString();
                 if((algo.equals("bubble sort") == false) && (algo.equals("insertion sort") == false)
-                        && (algo.equals("merge sort") == false) && (algo.equals("tree sort") == false)) {
+                        && (algo.equals("merge sort") == false) && (algo.equals("tree sort") == false) &&
+                        (algorithm.equals("b") == false) && (algorithm.equals("i") == false) && (algorithm.equals("m") == false)
+                        && (algorithm.equals("t") == false)) {
                     view.prompt("Please input one of the valid algorithms (Perhaps check your spelling)");
                     logger.error("Invalid algorithm inputted");
                     throw new Exception();
@@ -108,6 +120,18 @@ public class SortManager {
                     case("tree sort"):
                         sorter2 = new TreeSort();
                         break;
+                    case("b"):
+                        sorter2 = new BubbleSort();
+                        break;
+                    case("i"):
+                        sorter2 = new InsertionSort();
+                        break;
+                    case("m"):
+                        sorter2 = new MergeSort();
+                        break;
+                    case("t"):
+                        sorter2 = new TreeSort();
+                        break;
                 }
                 long sTime = System.nanoTime();
                 results.add(new Results(2, algo, sorter2.sortArray(randomArray), sorter2.sortArray(randomArray2),
@@ -115,8 +139,13 @@ public class SortManager {
                 long eTime = System.nanoTime();
                 long time = eTime-sTime;
                 view.prompt("This algorithm took " + time + " nano seconds.");
+                if(time<timeTaken){
+                    view.prompt("The faster algorithm was: " + algo);
+                }else{
+                    view.prompt("The faster algorithm was: " + algorithm);
+                }
             case("n"):
-                view.prompt("Thank you for using the sort manager.");
+                view.prompt("\nThank you for using the sort manager.");
                 System.exit(0);
 
         }
