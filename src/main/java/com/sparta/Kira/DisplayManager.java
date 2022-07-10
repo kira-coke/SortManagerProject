@@ -7,7 +7,6 @@ import java.util.Scanner;
 //handles data presentation, dynamitcally rendered
 public class DisplayManager {
 
-    Scanner sc = new Scanner(System.in);
 
     public void prompt(String message){
         System.out.println(message);//
@@ -17,11 +16,13 @@ public class DisplayManager {
     }
 
     public String getInputString(){
+        Scanner sc = new Scanner(System.in);
         String temp = sc.nextLine();
         return temp.toLowerCase();//users decision
     }
 
     public int getInputInt(){
+        Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }
 
