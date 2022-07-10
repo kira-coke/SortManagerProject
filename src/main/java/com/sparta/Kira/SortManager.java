@@ -1,11 +1,13 @@
 package com.sparta.Kira;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-//controller class
-//``sorters``` - The sort algorithms with Sorter interface for the Factory pattern.
-//handles request flow, never handles data logic
+import java.util.InputMismatchException;
 public class SortManager {
+    private static Logger logger = LogManager.getLogger("My logger");
     private ArrayList<Results> results = new ArrayList<>();
     private Model model;
     private DisplayManager view;
@@ -14,17 +16,33 @@ public class SortManager {
         this.view = view;
     }
 
-    public void run(){
+
+    public void run() throws Exception {
         view.prompt("Input which algorithm you would like to use:");// TODO custom exceptions for invalid String
         view.prompt("Bubble sort, Insertion sort, Merge sort or Tree sort.");// TODO add rest of options
         String algorithm = view.getInputString();
+        if((algorithm.equals("bubble sort") == false) && (algorithm.equals("insertion sort") == false)
+            && (algorithm.equals("merge sort") == false) && (algorithm.equals("tree sort") == false)) {
+            view.prompt("Please input one of the valid algorithms (Perhaps check your spelling)");
+            logger.error("Invalid algorithm inputted");
+            throw new Exception();
+        }
         view.prompt("Input a number between 1 and 100 for your desired array length");
-        int arrayLength = view.getInputInt(); //TODO custom excpetion for invalid input (not int) & if array is biiger thgan 100
+        int arrayLength = view.getInputInt();
+        if(arrayLength <1 || arrayLength>100) {
+            view.prompt("Please input a valid number");
+            logger.error("Invalid int given");
+            throw new ArithmeticException();
+        }
         model.add(arrayLength);//create random array of size given
-        int[] randomArray = new int[]{5, 20, 58, 47, 21};
-        //int[] randomArray = model.getItem(0);
+        int[] randomArray = model.getItem(0);
         view.prompt("For the second array, how long would you like it to be?");
-        int array2Length = view.getInputInt();;
+        int array2Length = view.getInputInt();
+        if(array2Length <1 || array2Length>100) {
+            view.prompt("Please input a valid number");
+            logger.error("Invalid int given");
+            throw new ArithmeticException();
+        }
         model.add(array2Length);
         int[] randomArray2 = model.getItem(1);
         view.prompt("Unsorted array one: " + Arrays.toString(randomArray));
@@ -50,15 +68,20 @@ public class SortManager {
         }
         view.prompt("\n"+ algorithm + "sort will be used");//output which algorithm
         long startTime = System.nanoTime();
-        sortedArray = sorter.sortArray(randomArray);
+        try{
+            sortedArray = sorter.sortArray(randomArray);
+            sortedArray2 = sorter.sortArray(randomArray2);
+            mergedArray = sorter.mergeArray(randomArray, randomArray2);
+        }catch(NullPointerException e){
+            logger.error("No algorithm was inputed", e.getMessage());
+            throw new NullPointerException();
+        }
         long endTime = System.nanoTime();
         view.prompt("Sorted array one: "+ Arrays.toString(sortedArray));//output sorted array
         long timeTaken = endTime-startTime;
-        sortedArray2 = sorter.sortArray(randomArray2);
         view.prompt("Sorted array two: " + Arrays.toString(sortedArray2));
-        mergedArray = sorter.mergeArray(randomArray, randomArray2);
         view.prompt("Merged sorted array of both: " + Arrays.toString(mergedArray));
-        results.add(new Results(1, algorithm, sortedArray, sortedArray2, mergedArray, timeTaken));
+        results.add(new Results(1, algorithm, sortedArray, sortedArray2, mergedArray));
         view.prompt("This algorithm took " + timeTaken + " nano seconds.");
         view.prompt("Would you like to use another algorithm and compare run times? Y/N\n");
         String answer = view.getInputString();
@@ -66,6 +89,12 @@ public class SortManager {
             case("y"):
                 view.prompt("Which algorithm would you like to use?");
                 String algo = view.getInputString();
+                if((algo.equals("bubble sort") == false) && (algo.equals("insertion sort") == false)
+                        && (algo.equals("merge sort") == false) && (algo.equals("tree sort") == false)) {
+                    view.prompt("Please input one of the valid algorithms (Perhaps check your spelling)");
+                    logger.error("Invalid algorithm inputted");
+                    throw new Exception();
+                }
                 switch(algo){
                     case("bubble sort"):
                         sorter2 = new BubbleSort();
@@ -81,9 +110,10 @@ public class SortManager {
                         break;
                 }
                 long sTime = System.nanoTime();
+                results.add(new Results(2, algo, sorter2.sortArray(randomArray), sorter2.sortArray(randomArray2),
+                        sorter2.mergeArray(randomArray, randomArray2)));
                 long eTime = System.nanoTime();
                 long time = eTime-sTime;
-                results.add(new Results(2, algo, sorter2.sortArray(randomArray), sorter2.sortArray(randomArray2), sorter2.mergeArray(randomArray, randomArray2), time));
                 view.prompt("This algorithm took " + time + " nano seconds.");
             case("n"):
                 view.prompt("Thank you for using the sort manager.");
